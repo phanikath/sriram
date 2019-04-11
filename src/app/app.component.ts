@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnChanges, DoCheck, AfterViewInit,
   AfterViewChecked, OnDestroy {
 
   ngOnDestroy(): void {
-    console.log("ngOnDestroy");
+   //  console.log("ngOnDestroy");
   }
   @ViewChild(OnecomponentComponent) vewChild: OnecomponentComponent;
 
@@ -27,16 +27,16 @@ export class AppComponent implements OnInit, OnChanges, DoCheck, AfterViewInit,
 
   ngAfterViewChecked(): void {
 
-    this.nameparent = this.vewChild.name;
-    console.log('AfterViewChecked' + this.nameparent);
+    // this.nameparent = this.vewChild.name;
+    // console.log('AfterViewChecked' + this.nameparent);
 
   }
   ngAfterViewInit(): void {
-    console.log("ngAfterViewInit");
+   //  console.log("ngAfterViewInit");
   }
 
   ngDoCheck(): void {
-    console.log("ngDoCheck");
+    // console.log("ngDoCheck");
   }
   ngOnInit(): void {
    
@@ -58,12 +58,12 @@ export class AppComponent implements OnInit, OnChanges, DoCheck, AfterViewInit,
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes');
+   //  console.log('changes');
 
   }
 
   getbutton() {
-    console.log("getbutton");
+   //  console.log("getbutton");
   }
 
 
