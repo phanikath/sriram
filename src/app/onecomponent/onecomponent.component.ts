@@ -1,6 +1,6 @@
 import { Component, OnInit, SimpleChanges, OnChanges, Input, ContentChild } from '@angular/core';
 import { UserserviceService } from '../userservice.service';
-
+import { trigger, state, style, animate, transition } from '@angular/animations';
 @Component({
   selector: 'app-onecomponent',
   templateUrl: './onecomponent.component.html',

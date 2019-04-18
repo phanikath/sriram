@@ -2,6 +2,18 @@
   onecomponent works! {{user}}
 </p>
 
+<button class="btn btn-outline-primary btn-sm"
+                      [routerLink]="['/two']">
+                two
+              </button>
+
+              <button class="btn btn-outline-primary btn-sm"
+              [routerLink]="['/prod']">
+        prod
+      </button>
+
+
+
 phanikanth
 <input type="text" [(ngModel)]="edituser">
 <button type="button" (click)="edit()">submit</button>

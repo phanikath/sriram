@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, ViewChild, ContentChild, OnDestroy } from '@angular/core';
 import { OnecomponentComponent } from './onecomponent/onecomponent.component';
-import { Observable, of } from 'rxjs';
+import { slideInAnimation } from './app.animation';
 enum color {
   red = 0,
   blue = 1,
@@ -9,12 +9,18 @@ enum color {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [slideInAnimation]
 })
 
 export class AppComponent implements OnInit, OnChanges, DoCheck, AfterViewInit,
   AfterViewChecked, OnDestroy {
 
+    getState(outlet) {
+      return outlet.activatedRouteData.state;
+    }
+
+    show:boolean = false;
   ngOnDestroy(): void {
    //  console.log("ngOnDestroy");
   }
@@ -39,7 +45,6 @@ export class AppComponent implements OnInit, OnChanges, DoCheck, AfterViewInit,
     // console.log("ngDoCheck");
   }
   ngOnInit(): void {
-   
     // var obserable = of(0,1,2,3,4).pipe(first()).subscribe((x: any) => console.log(x))
   
 

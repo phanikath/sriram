@@ -8,12 +8,14 @@ import { OnecomponentComponent } from './onecomponent/onecomponent.component';
 import { TwocomponentComponent } from './twocomponent/twocomponent.component';
 import { ScrollinfinityComponent } from './scrollinfinity/scrollinfinity.component';
 
-import { MatTableModule, MatCheckboxModule } from '@angular/material' 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatTableModule, MatCheckboxModule, MatButtonModule, MatSortModule, MatIconModule } from '@angular/material' 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from "@angular/common/http";
 import { ChecboxtableComponent } from './checboxtable/checboxtable.component';
+import { DoNotShowSecondaryOnRefreshGuard } from './DoNotShowSecondaryOnRefreshGuard';
 
 // import {AgGridModule} from 'ag-grid-community';
 
@@ -29,16 +31,20 @@ import { ChecboxtableComponent } from './checboxtable/checboxtable.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     InfiniteScrollModule,
     HttpClientModule,
     
+    MatIconModule,
     MatTableModule,
     MatCheckboxModule,
+    MatButtonModule,
+    MatSortModule,
     AgGridModule.withComponents([])
   ],
-  providers: [  ],
+  providers: [  DoNotShowSecondaryOnRefreshGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
