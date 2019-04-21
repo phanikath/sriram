@@ -13,12 +13,19 @@ import { MatTableModule, MatCheckboxModule, MatButtonModule, MatSortModule, MatI
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AgGridModule } from 'ag-grid-angular';
-import { HttpClientModule } from "@angular/common/http";
 import { ChecboxtableComponent } from './checboxtable/checboxtable.component';
 import { DoNotShowSecondaryOnRefreshGuard } from './DoNotShowSecondaryOnRefreshGuard';
+import { ProductsModule } from './products/products.module';
+import { Routes, RouterModule } from '@angular/router';
 
 // import {AgGridModule} from 'ag-grid-community';
-
+const routes: Routes = [
+  { path: '', redirectTo: '/one', pathMatch: 'full' },
+  { path: 'one', component: OnecomponentComponent  },
+  { path: 'two', component: TwocomponentComponent,
+  canActivate: [ DoNotShowSecondaryOnRefreshGuard ] },
+  // { path: 'prod', component: ProductComponent , data: { state: 'prod' } },
+];
 // import 'ag-grid-enterprise';
 @NgModule({
   declarations: [
@@ -35,13 +42,13 @@ import { DoNotShowSecondaryOnRefreshGuard } from './DoNotShowSecondaryOnRefreshG
     FormsModule,
     AppRoutingModule,
     InfiniteScrollModule,
-    HttpClientModule,
-    
+    ProductsModule,
     MatIconModule,
     MatTableModule,
     MatCheckboxModule,
     MatButtonModule,
     MatSortModule,
+    RouterModule.forRoot(routes),
     AgGridModule.withComponents([])
   ],
   providers: [  DoNotShowSecondaryOnRefreshGuard ],

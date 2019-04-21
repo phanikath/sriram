@@ -8,9 +8,9 @@ import { DoNotShowSecondaryOnRefreshGuard } from './DoNotShowSecondaryOnRefreshG
 const routes: Routes = [
   { path: '', redirectTo: '/one', pathMatch: 'full' },
   { path: 'one', component: OnecomponentComponent  },
-  { path: 'two', component: TwocomponentComponent, 
+  { path: 'two', component: TwocomponentComponent,
   canActivate: [ DoNotShowSecondaryOnRefreshGuard ] },
-  { path: 'prod', component: ProductComponent , data: { state: 'prod' } },
+  // { path: 'prod', component: ProductComponent , data: { state: 'prod' } },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
