@@ -17,6 +17,9 @@ import { ChecboxtableComponent } from './checboxtable/checboxtable.component';
 import { DoNotShowSecondaryOnRefreshGuard } from './DoNotShowSecondaryOnRefreshGuard';
 import { ProductsModule } from './products/products.module';
 import { Routes, RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 // import {AgGridModule} from 'ag-grid-community';
 const routes: Routes = [
@@ -49,6 +52,12 @@ const routes: Routes = [
     MatButtonModule,
     MatSortModule,
     RouterModule.forRoot(routes),
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      name: 'APM Demo App DevTools',
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
     AgGridModule.withComponents([])
   ],
   providers: [  DoNotShowSecondaryOnRefreshGuard ],

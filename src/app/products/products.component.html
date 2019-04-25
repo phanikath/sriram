@@ -1,3 +1,23 @@
-<p>
-  products works!
-</p>
+
+newtab
+
+<div class="form-check col-md-7">
+  <label>
+    <input class="form-check-input"
+           type="checkbox"
+           (change)="checkChanged($event.target.checked)"
+           [checked]="displayCode">
+    Display Product Code
+  </label>
+</div>
+
+
+<div class="form-check col-md-7">
+  <label>
+    <input class="form-check-input"
+           type="checkbox"
+           (change)="checkChanged1($event.target.checked)"
+           [checked]="displayCode1">
+    Display Product Code1
+  </label>
+</div>

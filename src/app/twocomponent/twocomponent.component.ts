@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserserviceService } from '../userservice.service';
 
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-twocomponent',
@@ -25,8 +26,9 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   ]
 })
 export class TwocomponentComponent implements OnInit {
-
-  constructor(private userser: UserserviceService) { }
+url: any;
+  constructor(private userser: UserserviceService,
+    private router: Router) { }
   user;
 edituser;
     ngOnInit() {
@@ -34,5 +36,10 @@ edituser;
     }
     edit() {
       this.userser.editUser(this.edituser);
+    }
+
+    newtab() {
+      this.url = this.router.navigate(['/one']);
+      window.open(this.url, '_blank');
     }
 }
