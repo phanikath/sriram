@@ -20,11 +20,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { MattablesComponent } from './mattables/mattables.component';
 
 // import {AgGridModule} from 'ag-grid-community';
 const routes: Routes = [
   { path: '', redirectTo: '/one', pathMatch: 'full' },
   { path: 'one', component: OnecomponentComponent  },
+  { path: 'mats', component: MattablesComponent  },
   { path: 'two', component: TwocomponentComponent,
   canActivate: [ DoNotShowSecondaryOnRefreshGuard ] },
   // { path: 'prod', component: ProductComponent , data: { state: 'prod' } },
@@ -37,7 +39,8 @@ const routes: Routes = [
     OnecomponentComponent,
     TwocomponentComponent,
     ScrollinfinityComponent,
-    ChecboxtableComponent
+    ChecboxtableComponent,
+    MattablesComponent
   ],
   imports: [
     BrowserModule,

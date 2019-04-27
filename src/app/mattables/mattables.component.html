@@ -1,0 +1,53 @@
+<!-- <div class="form form-inline">
+  <div class="form-check" style="padding-right:20px;">
+    <label class="form-check-label">
+       <input type="checkbox" class="form-check-input" (click) ="test()"> Value
+    </label>
+  </div>
+</div> -->
+
+<i class="material-icons ddb-icons query-menu-icons">person</i> <label for="users">User</label><br>
+
+<div *ngFor="let owner of groupOwner">
+  <input (change)="onChange(owner, $event.target.checked)" name="{{ owner}}" type="checkbox"
+    id="{{owner}}">
+  {{owner}}
+</div>
+
+<button mat-button class="btn-search" (click)="search()">
+  <i class="material-icons ddb-icons">search</i>Search
+</button>
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="test()" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
