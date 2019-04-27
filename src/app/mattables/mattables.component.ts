@@ -15,6 +15,7 @@ export class MattablesComponent implements OnInit {
   userNameArray: Array<any> = [];
   tempgroup1 = new MatTableDataSource<Element>();
   tempgroup2;
+  groupNameText = '';
   ngOnInit() {
     //  this.ddbService.groupDataSource = result.ddbQueriesGroup;
     // this.dataSource = new MatTableDataSource(this.dataSource);
@@ -42,10 +43,17 @@ export class MattablesComponent implements OnInit {
           this.tempgroup1.data.push(this.tempGroup[i]);
         }
       }
+    }
+    if (this.groupNameText !== '') {
+      this.tempGroup = this.dataSource.data.filter(e => e.symbol === this.groupNameText);
+      for (let i = 0; i < this.tempGroup.length; i++) {
+        this.tempgroup1.data.push(this.tempGroup[i]);
+      }
+    }
+    if (this.tempgroup1.data.length > 0) {
       this.dataSource = this.tempgroup1;
       this.tempgroup1 = new MatTableDataSource<Element>();
     }
-
   }
 }
 
@@ -66,10 +74,10 @@ const ELEMENT_DATA: Element[] = [
   { position: 7, name: 'sai', weight: 14.0067, symbol: 'N' },
   { position: 8, name: 'sai', weight: 15.9994, symbol: 'O' },
   { position: 9, name: 'sai', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  { position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na' },
-  { position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg' },
-  { position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al' },
+  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'phani' },
+  { position: 11, name: 'Sodium', weight: 22.9897, symbol: 'phani' },
+  { position: 12, name: 'Magnesium', weight: 24.305, symbol: 'prasad' },
+  { position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'prasad' },
   { position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si' },
   { position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P' },
   { position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S' },
