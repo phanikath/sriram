@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-mattables',
@@ -7,55 +7,69 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./mattables.component.scss']
 })
 export class MattablesComponent implements OnInit {
+  constructor(private store: Store<any>) { }
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
-  dataSourceMain = new MatTableDataSource<Element>(ELEMENT_DATA);
-  groupOwner;
-  tempGroup;
-  userNameArray: Array<any> = [];
-  tempgroup1 = new MatTableDataSource<Element>();
-  tempgroup2;
-  groupNameText = '';
+  dataSource: any; // = new MatTableDataSource<Element>(ELEMENT_DATA);
+  // dataSourceMain = new MatTableDataSource<Element>(ELEMENT_DATA);
+  // groupOwner;
+  // tempGroup;
+  // userNameArray: Array<any> = [];
+  // tempgroup1 = new MatTableDataSource<Element>();
+  // tempgroup2;
+  // groupNameText = '';
   ngOnInit() {
+    this.store.dispatch({
+      type: 'MAT_TABLES',
+      payload: ELEMENT_DATA
+    });
+
+    this.store.pipe(select('Mattables')).subscribe(
+      ShowMatTable => this.dataSource = ShowMatTable.ShowMatTable
+    );
+    //  this.mattable.getProducts().subscribe(
+    //   selectedProduct => this.dataSource = selectedProduct
+    // );
+
+    //   this.dataSource = this.mattable.getProducts();
     //  this.ddbService.groupDataSource = result.ddbQueriesGroup;
     // this.dataSource = new MatTableDataSource(this.dataSource);
-    this.groupOwner = this.dataSource.data.map(item => item.name)
-      .filter((value, index, self) => self.indexOf(value) === index);
+    // this.groupOwner = this.dataSource.data.map(item => item.name)
+    //   .filter((value, index, self) => self.indexOf(value) === index);
   }
 
 
   onChange(owner: string, isChecked: boolean) {
-    if (isChecked) {
-      this.userNameArray.push(owner);
-    } else {
-      const index = this.userNameArray.indexOf(owner);
-      this.userNameArray.splice(index, 1);
-    }
-  }
-
-
-  search() {
-    this.dataSource = this.dataSourceMain;
-    if (this.userNameArray.length > 0) {
-      for (let index = 0; index < this.userNameArray.length; index++) {
-        this.tempGroup = this.dataSource.data.filter(e => e.name === this.userNameArray[index]);
-        for (let i = 0; i < this.tempGroup.length; i++) {
-          this.tempgroup1.data.push(this.tempGroup[i]);
-        }
-      }
-    }
-    if (this.groupNameText !== '') {
-      this.tempGroup = this.dataSource.data.filter(e => e.symbol === this.groupNameText);
-      for (let i = 0; i < this.tempGroup.length; i++) {
-        this.tempgroup1.data.push(this.tempGroup[i]);
-      }
-    }
-    if (this.tempgroup1.data.length > 0) {
-      this.dataSource = this.tempgroup1;
-      this.tempgroup1 = new MatTableDataSource<Element>();
-    }
+    // if (isChecked) {
+    //   this.userNameArray.push(owner);
+    // } else {
+    //   const index = this.userNameArray.indexOf(owner);
+    //   this.userNameArray.splice(index, 1);
+    // }
   }
 }
+
+//   search() {
+//     this.dataSource = this.dataSourceMain;
+//     if (this.userNameArray.length > 0) {
+//       for (let index = 0; index < this.userNameArray.length; index++) {
+//         this.tempGroup = this.dataSource.data.filter(e => e.name === this.userNameArray[index]);
+//         for (let i = 0; i < this.tempGroup.length; i++) {
+//           this.tempgroup1.data.push(this.tempGroup[i]);
+//         }
+//       }
+//     }
+//     if (this.groupNameText !== '') {
+//       this.tempGroup = this.dataSource.data.filter(e => e.symbol === this.groupNameText);
+//       for (let i = 0; i < this.tempGroup.length; i++) {
+//         this.tempgroup1.data.push(this.tempGroup[i]);
+//       }
+//     }
+//     if (this.tempgroup1.data.length > 0) {
+//       this.dataSource = this.tempgroup1;
+//       this.tempgroup1 = new MatTableDataSource<Element>();
+//     }
+//   }
+// }
 
 export interface Element {
   name: string;
@@ -88,4 +102,3 @@ const ELEMENT_DATA: Element[] = [
   { position: 21, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
   { position: 22, name: 'Hyd', weight: 1.0079, symbol: 'H' },
 ];
-

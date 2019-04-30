@@ -15,12 +15,13 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AgGridModule } from 'ag-grid-angular';
 import { ChecboxtableComponent } from './checboxtable/checboxtable.component';
 import { DoNotShowSecondaryOnRefreshGuard } from './DoNotShowSecondaryOnRefreshGuard';
-import { ProductsModule } from './products/products.module';
 import { Routes, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { MattablesComponent } from './mattables/mattables.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MattableModule } from './mattables/mattable.module';
 
 // import {AgGridModule} from 'ag-grid-community';
 const routes: Routes = [
@@ -39,8 +40,7 @@ const routes: Routes = [
     OnecomponentComponent,
     TwocomponentComponent,
     ScrollinfinityComponent,
-    ChecboxtableComponent,
-    MattablesComponent
+    ChecboxtableComponent
   ],
   imports: [
     BrowserModule,
@@ -48,14 +48,15 @@ const routes: Routes = [
     FormsModule,
     AppRoutingModule,
     InfiniteScrollModule,
-    ProductsModule,
+    HttpClientModule,
     MatIconModule,
     MatTableModule,
     MatCheckboxModule,
     MatButtonModule,
     MatSortModule,
     RouterModule.forRoot(routes),
-    StoreModule.forRoot({}),
+   MattableModule,
+    StoreModule.forRoot({ }),
     StoreDevtoolsModule.instrument({
       name: 'APM Demo App DevTools',
       maxAge: 25,

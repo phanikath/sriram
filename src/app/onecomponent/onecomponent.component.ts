@@ -1,6 +1,5 @@
 import { Component, OnInit, SimpleChanges, OnChanges, Input, ContentChild } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import * as fromProduct from '../products/state/product.reducer';
 
 
 @Component({
